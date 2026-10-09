@@ -39,8 +39,8 @@ DressCode : No dress code One line description : choose a different line accor
 
 Event Name : Rind Ceremony
 Date and Time : 18 NOV 2026 3PM
-Venus name : East Lawn Entertainment Paradise - Marriage Garden
-Address : Near, Jawahar Circle, Ambedkar Colony, Surajpura, Jaipur, Rajasthan 302029
+Venus name : Gulab Vihar
+Address : Sheopur Rd, Sanganer, Pratap Nagar, Jaipur, Rajasthan 302033
 DressCode : No dress code
 One line description : choose a different line according to yourself
 
