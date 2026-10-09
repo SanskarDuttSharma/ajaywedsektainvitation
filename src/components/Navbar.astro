@@ -1,0 +1,183 @@
+---
+---
+
+<nav id="navbar" class="navbar">
+  <!-- Hamburger (mobile left) -->
+  <button id="menu-toggle" class="menu-btn md:hidden" aria-label="Open menu">&#9776;</button>
+
+  <!-- Logo image (center, revealed on scroll) -->
+  <a href="#hero" id="navbar-logo-link" class="navbar-logo-link" aria-label="Home">
+    <img src="/images/LOGO.png" alt="Ekta & Ajay" class="navbar-logo-img" />
+  </a>
+
+  <!-- Desktop nav links (shown after scrolling past hero) -->
+  <ul id="desktop-nav" class="desktop-nav">
+    {[
+      { href: '#hero',        label: 'Home'        },
+      { href: '#invitation',  label: 'Invitation'  },
+      { href: '#countdown',   label: 'Countdown'   },
+      { href: '#festivities', label: 'Festivities' },
+    ].map(link => (
+      <li>
+        <a href={link.href} class="font-heading nav-link">{link.label}</a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Spacer for mobile centering -->
+  <span class="md:hidden w-8" aria-hidden="true"></span>
+</nav>
+
+<!-- Mobile fullscreen drawer -->
+<div id="mobile-menu" class="mobile-drawer hidden">
+  <button id="menu-close" class="drawer-close" aria-label="Close menu">&#10005;</button>
+  {[
+    { href: '#hero',        label: 'Home'        },
+    { href: '#invitation',  label: 'Invitation'  },
+    { href: '#countdown',   label: 'Countdown'   },
+    { href: '#festivities', label: 'Festivities' },
+  ].map(link => (
+    <a href={link.href} class="mobile-nav-link font-heading">{link.label}</a>
+  ))}
+</div>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.25rem;
+    background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .menu-btn {
+    font-size: 1.4rem;
+    color: var(--color-gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* Logo */
+  .navbar-logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 28%;
+    border: 1px solid rgba(201,168,76,0.4);
+    box-shadow: 0 1px 8px rgba(201,168,76,0.2);
+  }
+
+  /* Desktop nav */
+  .desktop-nav {
+    display: none;
+    list-style: none;
+    align-items: center;
+    gap: clamp(1rem,2.5vw,2rem);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  @media (min-width: 768px) {
+    .desktop-nav { display: flex; }
+  }
+
+  .nav-link {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(44,26,14,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--color-gold); }
+
+  /* Mobile drawer */
+  .mobile-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(11,25,41,0.97);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .mobile-drawer.flex { display: flex; }
+
+  .drawer-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-size: 1.3rem;
+    color: var(--color-gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #F0E6D3;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-nav-link:hover { color: var(--color-gold); }
+</style>
+
+<script>
+  const nav        = document.getElementById('navbar')           as HTMLElement | null;
+  const logoLink   = document.getElementById('navbar-logo-link') as HTMLElement | null;
+  const desktopNav = document.getElementById('desktop-nav')      as HTMLElement | null;
+  const heroEl     = document.getElementById('hero')             as HTMLElement | null;
+
+  function syncNav() {
+    if (!nav) return;
+    const pastHero = heroEl ? heroEl.getBoundingClientRect().bottom < 72 : false;
+
+    if (pastHero) {
+      nav.style.background    = 'rgba(253,246,236,0.96)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.boxShadow     = '0 1px 20px rgba(44,26,14,0.12)';
+      if (logoLink)   { logoLink.style.opacity = '1';   logoLink.style.pointerEvents = 'auto'; }
+      if (desktopNav) { desktopNav.style.opacity = '1'; desktopNav.style.pointerEvents = 'auto'; }
+    } else {
+      nav.style.background    = 'transparent';
+      nav.style.backdropFilter = '';
+      nav.style.boxShadow     = '';
+      if (logoLink)   { logoLink.style.opacity = '0';   logoLink.style.pointerEvents = 'none'; }
+      if (desktopNav) { desktopNav.style.opacity = '0'; desktopNav.style.pointerEvents = 'none'; }
+    }
+  }
+
+  window.addEventListener('scroll', syncNav, { passive: true });
+  syncNav();
+
+  const menu    = document.getElementById('mobile-menu');
+  const openMenu  = () => { menu?.classList.remove('hidden'); menu?.classList.add('flex'); };
+  const closeMenu = () => { menu?.classList.add('hidden');   menu?.classList.remove('flex'); };
+
+  document.getElementById('menu-toggle')?.addEventListener('click', openMenu);
+  document.getElementById('menu-close')?.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeMenu));
+</script>

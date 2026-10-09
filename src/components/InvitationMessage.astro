@@ -1,0 +1,316 @@
+---
+---
+
+<section id="invitation" class="invite-section">
+
+  <!-- Wave top -->
+  <svg class="wave-divider" viewBox="0 0 480 24" preserveAspectRatio="none">
+    <path d="M0,12 C80,2 120,22 200,12 S320,2 400,12 S450,22 480,12"
+          stroke="#C9A84C" stroke-width="1" fill="none"/>
+  </svg>
+
+  <!-- Invitation text -->
+  <p class="font-body invite-text">
+    A beautiful story is about to begin… With love in our hearts and joy in our souls,
+    we invite you to be a part of our wedding celebration and bless us as we start our
+    forever together.
+  </p>
+
+  <!-- Wave bottom -->
+  <svg class="wave-divider" viewBox="0 0 480 24" preserveAspectRatio="none">
+    <path d="M0,12 C80,2 120,22 200,12 S320,2 400,12 S450,22 480,12"
+          stroke="#C9A84C" stroke-width="1" fill="none"/>
+  </svg>
+
+  <!-- Scratch-to-reveal date card -->
+  <div class="reveal-area">
+    <p class="font-script scratch-label" id="scratch-hint">Scratch to Reveal</p>
+
+    <div class="scratch-wrap" id="scratch-wrap">
+      <!-- Date card underneath -->
+      <div class="date-card" id="date-card">
+        <p class="font-heading date-card-date">20 November 2026</p>
+        <p class="font-heading date-card-day">Friday</p>
+        <p class="font-heading date-card-time">8:00 PM</p>
+        <p class="font-body date-card-venue">Mukund Gardens, Ajmer</p>
+      </div>
+      <!-- Canvas overlay -->
+      <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
+      <!-- Sparkle burst container (card-scoped) -->
+      <div id="sparkle-container" class="sparkle-container"></div>
+    </div>
+  </div>
+
+  <!-- Heart divider at bottom -->
+  <div class="heart-row">
+    <div class="heart-line"></div>
+    <span class="heart-icon">♥</span>
+    <div class="heart-line"></div>
+  </div>
+
+</section>
+
+<style>
+  .invite-section {
+    background: var(--color-ivory-dark);
+    min-height: 100svh;
+    padding: clamp(2rem,7vw,5rem) clamp(1rem,5vw,4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem,3.5vw,2.5rem);
+    position: relative;
+    overflow: hidden;
+
+    /* Subtle dot texture */
+    background-image:
+      radial-gradient(circle, rgba(201,168,76,0.12) 1px, transparent 1px),
+      radial-gradient(circle, rgba(44,26,14,0.04) 1px, transparent 1px);
+    background-size: 80px 80px, 40px 40px;
+    background-position: 0 0, 20px 20px;
+  }
+
+  /* Invitation paragraph */
+  .invite-text {
+    max-width: 600px;
+    text-align: center;
+    font-size: clamp(1rem,3.5vw,1.25rem);
+    line-height: 1.85;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-deep);
+    letter-spacing: 0.02em;
+    opacity: 0.8;
+  }
+
+  /* Scratch section */
+  .reveal-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: min(380px, 92vw);
+  }
+
+  .scratch-label {
+    font-size: clamp(1.9rem,5.5vw,2.6rem);
+    color: var(--color-deep);
+    opacity: 0.8;
+    transition: opacity 0.4s;
+  }
+
+  .scratch-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  /* Date card revealed underneath canvas */
+  .date-card {
+    background: linear-gradient(135deg, var(--color-cream), var(--color-ivory));
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 16px;
+    padding: clamp(1.5rem,5vw,2.5rem) 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .date-card-tag   { font-size: clamp(1.7rem,5vw,2.2rem); color: var(--color-gold); }
+  .date-card-date  { font-size: clamp(1.1rem,4vw,1.5rem); color: var(--color-deep); letter-spacing: 0.1em; font-weight: 600; }
+  .date-card-day   { font-size: clamp(0.9rem,3vw,1.1rem); color: rgba(44,26,14,0.6); letter-spacing: 0.12em; }
+  .date-card-time  { font-size: clamp(0.9rem,3vw,1.1rem); color: rgba(44,26,14,0.6); letter-spacing: 0.12em; }
+  .date-card-venue { font-size: clamp(0.75rem,2.5vw,0.9rem); color: rgba(44,26,14,0.4); margin-top: 0.3rem; }
+
+  /* Canvas sits on top of date card */
+  .scratch-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+    border-radius: 16px;
+  }
+
+  /* Sparkle burst — scoped to card */
+  .sparkle-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 20;
+  }
+
+  /* Heart divider */
+  .heart-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 280px;
+  }
+  .heart-line { flex: 1; height: 1px; background: rgba(201,168,76,0.3); }
+  .heart-icon { color: var(--color-gold); font-size: 0.9rem; opacity: 0.7; }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Scroll reveal ──────────────────────────────────
+  gsap.from('.invite-text', {
+    opacity: 0, y: 30, duration: 1.1,
+    scrollTrigger: { trigger: '.invite-section', start: 'top 80%', once: true },
+  });
+
+  // ── Scratch card ───────────────────────────────────
+  const canvas  = document.getElementById('scratch-canvas') as HTMLCanvasElement | null;
+  const wrap    = document.getElementById('scratch-wrap')   as HTMLElement | null;
+  const hint    = document.getElementById('scratch-hint')   as HTMLElement | null;
+
+  if (canvas && wrap) {
+    let revealed = false;
+    let drawing  = false;
+
+    const initCanvas = () => {
+      canvas.width  = wrap.offsetWidth;
+      canvas.height = wrap.offsetHeight;
+      const ctx = canvas.getContext('2d')!;
+
+      // Warm beige scratch surface
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0,   '#E8D5B0');
+      grad.addColorStop(0.5, '#D4B87A');
+      grad.addColorStop(1,   '#C9A84C');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Dot texture
+      for (let i = 0; i < 4000; i++) {
+        ctx.fillStyle = `rgba(44,26,14,${Math.random() * 0.06})`;
+        ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+      }
+
+      // Deep border
+      ctx.strokeStyle = 'rgba(44,26,14,0.2)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.roundRect(8, 8, canvas.width - 16, canvas.height - 16, 12); ctx.stroke();
+
+      // Hint text
+      const fs = Math.min(canvas.width * 0.042, 18);
+      ctx.fillStyle = '#2C1A0E';
+      ctx.font = `${fs}px "Great Vibes", cursive`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('Scratch to Reveal', canvas.width / 2, canvas.height / 2 - fs * 0.5);
+      ctx.fillStyle = 'rgba(44,26,14,0.5)';
+      ctx.font = `${fs * 0.55}px "Karla", sans-serif`;
+      ctx.fillText('Tap or drag to reveal the date', canvas.width / 2, canvas.height / 2 + fs * 0.9);
+    };
+
+    const spawnSparkles = () => {
+      const container = document.getElementById('sparkle-container');
+      if (!container) return;
+      const cx = wrap.offsetWidth  / 2;
+      const cy = wrap.offsetHeight / 2;
+      // 24 burst particles around the card center
+      for (let i = 0; i < 24; i++) {
+        const angle  = (i / 24) * Math.PI * 2;
+        const dist   = 40 + [60,90,70,100,55,85,75,95][i % 8];
+        const bx     = Math.cos(angle) * dist;
+        const by     = Math.sin(angle) * dist;
+        const size   = 4 + [2,5,3,4,6,2,5,3][i % 8];
+        const delay  = (i % 6) * 0.06;
+        const dot    = document.createElement('div');
+        dot.style.cssText = `
+          position:absolute;
+          left:${cx}px; top:${cy}px;
+          width:${size}px; height:${size}px;
+          border-radius:50%;
+          background:${i % 3 === 0 ? 'var(--color-gold-light)' : 'var(--color-gold)'};
+          --bx:${bx}px; --by:${by}px;
+          animation: sparkBurst 0.75s ease-out ${delay}s forwards;
+        `;
+        container.appendChild(dot);
+      }
+      // ✦ symbol pops
+      ['✦','✦','✦'].forEach((sym, i) => {
+        const a = (i / 3) * Math.PI * 2 + 0.5;
+        const span = document.createElement('span');
+        span.textContent = sym;
+        span.style.cssText = `
+          position:absolute;
+          left:${cx}px; top:${cy}px;
+          font-size:${12 + i * 4}px;
+          color:var(--color-gold);
+          --bx:${Math.cos(a) * 70}px; --by:${Math.sin(a) * 70}px;
+          animation: sparkBurst 0.9s ease-out ${i * 0.12}s forwards;
+        `;
+        container.appendChild(span);
+      });
+      setTimeout(() => { container.innerHTML = ''; }, 1000);
+    };
+
+    const checkReveal = () => {
+      if (revealed) return;
+      const ctx = canvas.getContext('2d')!;
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let t = 0;
+      for (let i = 3; i < data.length; i += 4) if (data[i] < 128) t++;
+      if (t / (data.length / 4) > 0.55) {
+        revealed = true;
+        spawnSparkles();
+        canvas.style.transition = 'opacity 0.6s ease';
+        canvas.style.opacity = '0';
+        if (hint) {
+          hint.style.transition = 'opacity 0.4s ease';
+          hint.style.opacity = '0';
+          setTimeout(() => {
+            if (hint) {
+              hint.textContent = '✦  You are Invited!  ✦';
+              hint.style.opacity = '1';
+            }
+          }, 500);
+        }
+        setTimeout(() => { canvas.style.display = 'none'; }, 650);
+      }
+    };
+
+    const scratchAt = (x: number, y: number) => {
+      if (revealed) return;
+      const ctx = canvas.getContext('2d')!;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath(); ctx.arc(x, y, 30, 0, Math.PI * 2); ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+    };
+
+    const pos = (e: MouseEvent | Touch) => {
+      const r = canvas.getBoundingClientRect();
+      return {
+        x: (('clientX' in e ? e.clientX : (e as Touch).clientX) - r.left) * (canvas.width  / r.width),
+        y: (('clientY' in e ? e.clientY : (e as Touch).clientY) - r.top)  * (canvas.height / r.height),
+      };
+    };
+
+    // Desktop — scratch on hover
+    canvas.addEventListener('mousemove', e => { const p = pos(e); scratchAt(p.x, p.y); checkReveal(); });
+
+    // Mobile — scratch on drag
+    canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; }, { passive: false });
+    canvas.addEventListener('touchmove',  e => {
+      e.preventDefault();
+      if (!drawing) return;
+      const p = pos(e.touches[0]); scratchAt(p.x, p.y); checkReveal();
+    }, { passive: false });
+    canvas.addEventListener('touchend', () => { drawing = false; });
+
+    setTimeout(initCanvas, 80);
+  }
+</script>

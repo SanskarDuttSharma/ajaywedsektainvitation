@@ -1,0 +1,107 @@
+---
+---
+
+<section id="couple-logo" class="cl-section">
+
+  <!-- Wedding illustration background -->
+  <img src="/images/StartingpageBackground.jpeg" alt="Wedding" class="cl-bg-img" />
+
+  <!-- Corner brackets -->
+  <div class="cl-corner cl-corner-tl"></div>
+  <div class="cl-corner cl-corner-tr"></div>
+  <div class="cl-corner cl-corner-bl"></div>
+  <div class="cl-corner cl-corner-br"></div>
+
+  <!-- AE Logo centered -->
+  <div class="cl-center" id="cl-center">
+    <div class="ae-logo-frame">
+      <img src="/images/LOGO.png" alt="Ajay & Ekta" class="ae-logo-img" />
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .cl-section {
+    position: relative;
+    min-height: 100svh;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Background photo */
+  .cl-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    background-color: #f5ead8;
+    z-index: 0;
+  }
+
+  /* Corner brackets */
+  .cl-corner {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    z-index: 3;
+    opacity: 0.5;
+  }
+  .cl-corner-tl { top: 1.5rem; left: 1.5rem;  border-top: 1.5px solid var(--color-gold); border-left:  1.5px solid var(--color-gold); }
+  .cl-corner-tr { top: 1.5rem; right: 1.5rem; border-top: 1.5px solid var(--color-gold); border-right: 1.5px solid var(--color-gold); }
+  .cl-corner-bl { bottom: 1.5rem; left: 1.5rem;  border-bottom: 1.5px solid var(--color-gold); border-left:  1.5px solid var(--color-gold); }
+  .cl-corner-br { bottom: 1.5rem; right: 1.5rem; border-bottom: 1.5px solid var(--color-gold); border-right: 1.5px solid var(--color-gold); }
+
+  /* Center wrapper — sit in the upper arch area, above the couple */
+  .cl-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin-bottom: 26vh; /* lift above the couple silhouette */
+  }
+
+  /* Decorative frame around the logo */
+  /* No filter here — filter on a parent creates an isolated stacking context
+     which prevents mix-blend-mode on the child from blending with the
+     background, causing a visible white box on all browsers */
+  .ae-logo-frame {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ae-logo-img {
+    width: clamp(210px, 58vw, 405px);
+    display: block;
+    mix-blend-mode: multiply;
+    -webkit-mix-blend-mode: multiply;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const center = document.getElementById('cl-center');
+
+  // Start hidden — animate in when curtain opens
+  gsap.set(center, { opacity: 0, scale: 0.88 });
+
+  document.addEventListener('curtainOpened', () => {
+    gsap.to(center, {
+      opacity: 1,
+      scale: 1,
+      duration: 3,
+      ease: 'power3.out',
+      delay: 0.15
+    });
+  });
+</script>

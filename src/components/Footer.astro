@@ -1,0 +1,136 @@
+---
+---
+
+<footer class="footer-section">
+
+  <!-- Wave top -->
+  <svg class="wave-divider" viewBox="0 0 480 24" preserveAspectRatio="none">
+    <path d="M0,12 C80,2 120,22 200,12 S320,2 400,12 S450,22 480,12"
+          stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
+  </svg>
+
+  <!-- Thank you note from family -->
+  <p class="font-body footer-thankyou-note">
+    With hearts full of gratitude, the Sharma family<br/>
+    is waiting for you to be part of<br/>
+    our celebration.
+  </p>
+
+  <!-- Thin gold rule -->
+  <div class="footer-rule"></div>
+
+  <!-- Closing message -->
+  <p class="font-script footer-closing">We can't wait to celebrate with you!</p>
+
+  <!-- Couple names -->
+  <p class="font-script footer-names">Ekta &amp; Ajay</p>
+
+  <!-- Heart divider -->
+  <div class="heart-row">
+    <div class="heart-line"></div>
+    <span class="heart-icon">♥</span>
+    <div class="heart-line"></div>
+  </div>
+
+  <!-- Wave bottom -->
+  <svg class="wave-divider" viewBox="0 0 480 24" preserveAspectRatio="none">
+    <path d="M0,12 C80,2 120,22 200,12 S320,2 400,12 S450,22 480,12"
+          stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
+  </svg>
+
+  <!-- Sub-footer -->
+  <div class="sub-footer">
+    <p class="font-script sub-names">Thank you !</p>
+    <p class="font-heading sub-meta">
+      20 November 2026 &bull; #EktaAndAjayBecomeEkay &bull;
+    </p>
+  </div>
+
+</footer>
+
+<style>
+  .footer-section {
+    background: var(--color-deep);
+    padding: clamp(3rem,8vw,5rem) 1.5rem clamp(1.5rem,4vw,3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(1rem,3vw,1.75rem);
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .footer-thankyou-label {
+    font-size: clamp(9px, 2vw, 11px);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    opacity: 0.6;
+    text-align: center;
+  }
+
+  .footer-thankyou-note {
+    font-size: clamp(13px, 3vw, 15px);
+    color: rgba(253,246,236,0.55);
+    text-align: center;
+    line-height: 1.9;
+    max-width: 480px;
+    font-style: italic;
+  }
+
+  .footer-rule {
+    width: clamp(80px, 22vw, 150px);
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+  }
+
+  .footer-closing {
+    font-size: clamp(2.2rem,8vw,3.8rem);
+    color: var(--color-gold);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .footer-names {
+    font-size: clamp(2.5rem,9vw,4.5rem);
+    color: var(--color-ivory);
+    text-align: center;
+  }
+
+  .heart-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 220px;
+  }
+  .heart-line { flex: 1; height: 1px; background: rgba(201,168,76,0.3); }
+  .heart-icon { color: var(--color-gold); font-size: 0.85rem; opacity: 0.7; }
+
+  .sub-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .sub-names {
+    font-size: clamp(1.8rem,6vw,2.5rem);
+    color: rgba(253,246,236,0.45);
+  }
+
+  .sub-meta {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253,246,236,0.28);
+    text-align: center;
+  }
+
+  .wa-link {
+    color: rgba(201,168,76,0.5);
+    text-decoration: underline;
+  }
+  .wa-link:hover { color: var(--color-gold); }
+</style>

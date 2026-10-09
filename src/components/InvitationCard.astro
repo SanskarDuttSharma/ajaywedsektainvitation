@@ -1,0 +1,254 @@
+---
+---
+
+<section id="invitation-card">
+
+  <!-- Subtle dot texture -->
+  <div class="inv-dot-bg" aria-hidden="true"></div>
+
+  <!-- Top gold bar -->
+  <div class="inv-top-bar" aria-hidden="true"></div>
+
+  <div class="inv-content">
+
+    <!-- Thin gold rule -->
+    <div class="inv-el inv-rule"></div>
+
+    <!-- Blessing -->
+    <p class="inv-el inv-body">
+      With the divine grace of Lord Ganesha<br/>
+      and the cherished blessings of our parents,
+    </p>
+
+    <!-- Bride's parents -->
+    <p class="inv-el inv-parents">
+      Mrs. Renu Sharma &amp; Mr. Surendra Dutt Sharma
+    </p>
+
+    <!-- Connecting prose -->
+    <p class="inv-el inv-body inv-italic">
+      joyfully invite you to join us in celebrating beautiful beginning of a new chapter in the life of our beloved daughter,
+    </p>
+    <h2></h2>
+    <!-- Bride name -->
+    <h2 class="inv-el inv-name inv-bride-new">
+      <span class="bride-initial">E</span><span class="bride-name">kta</span>
+    </h2>
+
+    <!-- Bridge -->
+    <p class="inv-el inv-body inv-italic">with</p>
+    <h2></h2>
+        <h2></h2>
+    <!-- Groom name -->
+    <h2 class="inv-el inv-name inv-groom">Ajay</h2>
+
+    <!-- Connecting prose -->
+    <p class="inv-el inv-body inv-italic">
+      beloved son of
+    </p>
+
+    <!-- Groom's parents -->
+    <p class="inv-el inv-parents">
+      Mrs. Bhuri Devi &amp; Mr. Radhey Shyam Sherawat
+    </p>
+
+    <!-- Connecting prose -->
+    <p class="inv-el inv-body inv-italic">
+      Your presence and blessings would make <br/>our celebration truly special.
+    </p>
+
+    <!-- Bottom rule + hashtag -->
+    <div class="inv-el inv-rule"></div>
+    <p class="inv-el inv-hashtag font-heading inv-italic">#EktaAndAjayBecomeEkay</p>
+
+  </div>
+
+  <!-- Mughal garden illustration pinned to bottom -->
+  <img
+    src="/images/NewPageInviteBottom.png"
+    class="inv-bottom-img"
+    alt=""
+    aria-hidden="true"
+  />
+
+</section>
+
+<style>
+  /* ── Section ───────────────────────────────── */
+  #invitation-card {
+    position: relative;
+    min-height: 100svh;
+    background: var(--color-ivory);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* bottom padding leaves room for the illustration */
+    padding:
+      clamp(3.5rem, 8vw, 5rem)
+      clamp(1.25rem, 5vw, 3rem)
+      clamp(200px, 32vw, 280px);
+  }
+
+  /* ── Dot texture ───────────────────────────── */
+  .inv-dot-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(201,168,76,0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+
+  /* ── Top accent bar ────────────────────────── */
+  .inv-top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--color-gold), rgba(201,168,76,0.35));
+  }
+
+  /* ── Content column ────────────────────────── */
+  .inv-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.45rem;
+    max-width: 440px;
+    z-index: 1;
+  }
+
+  /* ── Invocation ────────────────────────────── */
+  .inv-invocation {
+    font-size: clamp(9px, 2vw, 11px);
+    letter-spacing: 0.38em;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* ── Gold rule ─────────────────────────────── */
+  .inv-rule {
+    width: clamp(80px, 22vw, 150px);
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  }
+
+  /* ── Logo ───────────────────────────────────── */
+  .inv-logo {
+    width: clamp(130px, 36vw, 190px);
+    height: auto;
+    mix-blend-mode: multiply;   /* removes white bg on cream page */
+    filter: drop-shadow(0 2px 8px rgba(201,168,76,0.2));
+  }
+
+  /* ── Body copy ─────────────────────────────── */
+  .inv-body {
+    font-size: clamp(12px, 2.8vw, 14px);
+    color: var(--color-deep);
+    opacity: 0.65;
+    line-height: 1.85;
+    font-family: 'Karla', sans-serif;
+  }
+  .inv-italic { font-style: italic; }
+
+  /* ── Parents line ──────────────────────────── */
+  .inv-parents {
+    font-size: clamp(13px, 3.2vw, 16px);
+    color: var(--color-deep);
+    font-weight: 600;
+    line-height: 1.55;
+    font-family: 'Karla', sans-serif;
+  }
+
+  /* ── Names ─────────────────────────────────── */
+  .inv-name {
+    line-height: 1;
+    margin: 0;
+  }
+  /* Bride: Great Vibes — flowing, elegant cursive */
+  .bride-initial {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 14vw, 7rem);
+    color: var(--color-rose);
+    letter-spacing: 0;
+  }
+
+  .bride-name{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: clamp(3.5rem, 14vw, 7rem);
+    color: var(--color-rose);
+    letter-spacing: 0;
+  }
+
+  /* Groom: Mrs Saint Delafield — ornate calligraphic script */
+  .inv-groom {
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-style: bold;
+    font-size: clamp(3.5rem, 14vw, 7rem);
+    color: var(--color-rose);
+    letter-spacing: 0;
+  }
+
+  /* ── Hashtag ───────────────────────────────── */
+  .inv-hashtag {
+    font-family: 'Karla';
+    font-size: clamp(1rem, 1.9vw, 10px);
+    letter-spacing: 0.1em;
+    color: var(--color-rose);
+    opacity: 0.75;
+  }
+
+  /* ── Bottom illustration ───────────────────── */
+  .inv-bottom-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(180px, 28vw, 260px);
+    object-fit: cover;
+    object-position: top center;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo(
+    '#invitation-card .inv-el',
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.11,
+      duration: 0.75,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#invitation-card',
+        start: 'top 72%',
+        once: true,
+      },
+    }
+  );
+
+  gsap.fromTo(
+    '#invitation-card .inv-bottom-img',
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#invitation-card',
+        start: 'top 60%',
+        once: true,
+      },
+    }
+  );
+</script>

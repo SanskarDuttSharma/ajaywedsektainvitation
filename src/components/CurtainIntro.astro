@@ -1,0 +1,255 @@
+---
+---
+
+<div id="curtain-overlay">
+  <!-- Fixed rod — stays in place while panels slide -->
+  <div class="curtain-rod"></div>
+
+  <!-- Left panel -->
+  <div class="curtain-panel curtain-left">
+    <div class="grommet-row">
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="curtain-panel curtain-right">
+    <div class="grommet-row">
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+      <div class="grommet"></div>
+    </div>
+  </div>
+
+  <!-- Tap to reveal — centered pill button -->
+  <div class="curtain-hint-wrap" id="curtain-hint">
+    <p class="curtain-tap font-heading">Tap to Reveal</p>
+  </div>
+</div>
+
+<style>
+  #curtain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  /* ── Rod ───────────────────────────────────── */
+  .curtain-rod {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    z-index: 10002;
+    background: linear-gradient(
+      to bottom,
+      #cfc4ae 0%,
+      #b5a890 40%,
+      #d8ccb8 65%,
+      #a89f8a 100%
+    );
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+  }
+
+  /* ── Panels ─────────────────────────────────── */
+  .curtain-panel {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(50% + 1px);
+    will-change: transform;
+    overflow: visible;
+  }
+
+  /* Cream fabric with vertical fold shading */
+  .curtain-left {
+    left: 0;
+    background:
+      repeating-linear-gradient(
+        to right,
+        rgba(180,155,110,0.22) 0px,
+        rgba(180,155,110,0.08) 8px,
+        rgba(255,255,255,0.45) 18px,
+        rgba(255,255,255,0.60) 28px,
+        rgba(255,255,255,0.45) 38px,
+        rgba(180,155,110,0.10) 48px,
+        rgba(180,155,110,0.22) 56px
+      ),
+      linear-gradient(to right,
+        #EFE5D0 0%,
+        #FAF4E8 20%,
+        #FDF8F0 50%,
+        #FAF4E8 80%,
+        #F0E6D2 100%
+      );
+  }
+
+  .curtain-right {
+    right: 0;
+    background:
+      repeating-linear-gradient(
+        to left,
+        rgba(180,155,110,0.22) 0px,
+        rgba(180,155,110,0.08) 8px,
+        rgba(255,255,255,0.45) 18px,
+        rgba(255,255,255,0.60) 28px,
+        rgba(255,255,255,0.45) 38px,
+        rgba(180,155,110,0.10) 48px,
+        rgba(180,155,110,0.22) 56px
+      ),
+      linear-gradient(to left,
+        #EFE5D0 0%,
+        #FAF4E8 20%,
+        #FDF8F0 50%,
+        #FAF4E8 80%,
+        #F0E6D2 100%
+      );
+  }
+
+  /* Subtle bottom shadow on each panel */
+  .curtain-left::before,
+  .curtain-right::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(160,130,80,0.12));
+    pointer-events: none;
+  }
+
+  /* Gold/warm seam where panels meet */
+  .curtain-left::after,
+  .curtain-right::after {
+    content: '';
+    position: absolute;
+    top: 12px; /* below rod */
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-gold)       0%,
+      rgba(201,168,76,0.4)    40%,
+      rgba(201,168,76,0.25)   70%,
+      transparent             100%
+    );
+    opacity: 0.6;
+  }
+  .curtain-left::after  { right: 0; }
+  .curtain-right::after { left: 0; }
+
+  /* ── Grommets ────────────────────────────────── */
+  .grommet-row {
+    position: absolute;
+    top: -8px; /* straddle the rod */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 10003;
+    pointer-events: none;
+  }
+
+  .grommet {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #e0d8c8, #a09078);
+    border: 1.5px solid #8a7f6a;
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,0.5),
+      0 1px 3px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+  }
+
+  /* ── Tap hint ───────────────────────────────── */
+  .curtain-hint-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10001;
+    pointer-events: none;
+    animation: hintFade 1s ease-in-out infinite;
+  }
+
+  .curtain-tap {
+    font-size: clamp(11px, 2.8vw, 14px);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(253, 246, 236, 0.9);
+    background: rgba(30, 12, 5, 0.45);
+    border: 1px solid rgba(253, 246, 236, 0.25);
+    padding: 0.75rem 2rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  @keyframes hintFade {
+    0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.03); }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const overlay = document.getElementById('curtain-overlay');
+  const hint    = document.getElementById('curtain-hint');
+
+  // Lock scroll — must set on both html AND body for Chrome
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  let opened = false;
+
+  function openCurtain() {
+    if (opened) return;
+    opened = true;
+
+    // Remove both event types
+    overlay?.removeEventListener('pointerdown', openCurtain);
+    overlay?.removeEventListener('click', openCurtain);
+
+    document.dispatchEvent(new CustomEvent('curtainClicked'));
+
+    // Hide hint instantly on tap — also kill CSS animation so it can't override opacity
+    if (hint) {
+      hint.style.animation = 'none';
+      hint.style.opacity = '0';
+      hint.style.pointerEvents = 'none';
+    }
+
+    const tl = gsap.timeline({
+      onComplete() {
+        overlay?.remove();
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.dispatchEvent(new CustomEvent('curtainOpened'));
+      }
+    });
+
+    tl.to('.curtain-left',  { x: '-101%', duration: 3, ease: 'power3.inOut' })
+      .to('.curtain-right', { x:  '101%', duration: 3, ease: 'power3.inOut' }, '<');
+  }
+
+  // pointerdown works reliably across Chrome (mouse + touch + stylus)
+  // click kept as fallback for Safari
+  overlay?.addEventListener('pointerdown', openCurtain);
+  overlay?.addEventListener('click', openCurtain);
+</script>

@@ -1,0 +1,200 @@
+# Ekta & Ajay — Wedding Invitation Website (v2)
+
+A multi-page, fully animated, mobile-first wedding invitation site rebuilt with a modern tech stack.
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **Framework** | Astro | Multi-page static site, zero JS by default, fast load |
+| **UI Components** | React (via Astro islands) | Interactive components (RSVP, countdown, posts grid) |
+| **Styling** | Tailwind CSS + SCSS | Utility classes for layout, SCSS for custom animations & design tokens |
+| **Animations** | GSAP (GreenSock) | Hero reveals, scroll-triggered section entrances, countdown flip |
+| **Scroll Animations** | GSAP ScrollTrigger | Pin sections, parallax, fade-in on scroll |
+| **Lottie** | lottie-react | Decorative floral, diya, and mandala SVG animations |
+| **Fonts** | Google Fonts | Cinzel (headings), Mrs Saint Delafield (script), Karla (body) |
+| **Icons** | Lucide React | Clean line icons for venue, time, dress code |
+| **Deployment** | Vercel | Auto-deploy on push, free custom domain support |
+
+---
+
+## Project Structure
+
+```
+ekta-ajay-wedding/
+├── public/
+│   ├── lottie/              # Lottie JSON files (floral, diya, mandala)
+│   ├── images/              # Static assets (couple photos, backgrounds)
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── Hero.astro           # Hero section with GSAP reveal
+│   │   ├── Countdown.tsx        # React island — live countdown with flip animation
+│   │   ├── EventCard.astro      # Single event card component
+│   │   ├── Festivities.astro    # All 4 event cards with scroll-trigger
+│   │   ├── RSVP.tsx             # React island — form + WhatsApp dispatch
+│   │   ├── UpdatesGrid.tsx      # React island — photo/video masonry grid
+│   │   └── FloralDecor.tsx      # Lottie floral animation wrapper
+│   ├── layouts/
+│   │   └── BaseLayout.astro     # HTML shell, fonts, global SCSS
+│   ├── pages/
+│   │   └── index.astro          # Main page composing all sections
+│   ├── data/
+│   │   ├── events.ts            # All 4 event objects (edit here)
+│   │   └── posts.ts             # Photo/video post objects (edit here)
+│   └── styles/
+│       ├── global.scss          # CSS variables, resets, typography
+│       └── animations.scss      # Keyframes, GSAP helper classes
+├── astro.config.mjs
+├── tailwind.config.mjs
+└── package.json
+```
+
+---
+
+## Design System
+
+### Color Palette
+
+| Token | Value | Usage |
+|---|---|---|
+| `--color-gold` | `#C9A84C` | Headings, borders, accents |
+| `--color-rose` | `#D4748C` | Highlights, RSVP buttons |
+| `--color-ivory` | `#FDF6EC` | Page background |
+| `--color-deep` | `#2C1A0E` | Body text, dark overlays |
+| `--color-sage` | `#8A9E7B` | Subtle dividers, event card borders |
+
+### Typography
+
+| Role | Font | Weight |
+|---|---|---|
+| Couple names | Mrs Saint Delafield | 400 |
+| Section headings | Cinzel | 600 |
+| Body / labels | Karla | 400 / 500 |
+
+### Design Language
+
+- **Aesthetic:** Luxe Indian wedding — warm ivory base, gold filigree borders, rose accents
+- **Motifs:** Arch frames, lotus dividers, mandala watermarks, marigold Lottie animations
+- **Cards:** Soft cream background, gold top-border, subtle drop shadow, rounded corners
+- **Buttons:** Outlined gold (secondary), filled rose (primary CTA)
+- **Spacing:** Generous whitespace — breathable, not cluttered
+
+---
+
+## Page Sections & Animations
+
+### 1. Hero
+- Full-viewport section with a couple photo or illustrated arch as backdrop
+- GSAP timeline on load: names fade + rise, parents' names slide in, hashtag typewriter effect
+- Lottie floral garland animates along the arch edges
+- Floating petals particle effect (GSAP + CSS)
+
+### 2. Countdown
+- Live flip-clock countdown to 20 Nov 2026, 8:00 PM IST (muhurtham)
+- Each digit flips with a 3D CSS card-flip animation driven by GSAP
+- Subtle gold shimmer on the numbers
+
+### 3. The Festivities (4 Events)
+- Horizontal scroll on desktop, vertical stack on mobile
+- Each card pins on scroll (GSAP ScrollTrigger pinning)
+- Cards animate in with a staggered fade-up
+- Events in order:
+  - Ring Ceremony — Wed 18 Nov 2026, 4:00 PM
+  - Haldi Carnival — Thu 19 Nov 2026 (time TBD)
+  - Sangeet — Thu 19 Nov 2026 (time TBD)
+  - The Wedding — Fri 20 Nov 2026, 8:00 PM
+- Each card: date, time, venue, address, dress code, quote, Directions button, Add to Calendar button
+
+### 4. RSVP
+- Multi-step form (React island): Name → Attending → Which events → Guest count → Submit
+- Progress bar between steps
+- On submit: builds a pre-filled WhatsApp message and opens `wa.me/919116736541`
+- Confetti burst on submission (GSAP)
+
+### 5. Updates from Us
+- Masonry photo/video grid (CSS Grid + React)
+- Images fade in on scroll via GSAP ScrollTrigger
+- Videos autoplay muted on hover
+- Feed populated from `src/data/posts.ts`
+
+---
+
+## Data Files (edit these, not the components)
+
+### src/data/events.ts
+
+```ts
+export const events = [
+  {
+    name: "Ring Ceremony",
+    dateLabel: "Wednesday, 18 November 2026",
+    timeLabel: "4:00 PM onwards",
+    venue: "East Lawn Entertainment Paradise – Marriage Garden",
+    address: "Near Jawahar Circle, Ambedkar Colony, Surajpura, Jaipur, Rajasthan 302029",
+    dressCode: "Classic & styled — suits and gowns",
+    quote: "Two families, one promise, sealed with a ring.",
+    gcalStart: "20261118T103000Z",
+    gcalEnd: "20261118T123000Z",
+    mapsUrl: "https://maps.google.com/?q=East+Lawn+Entertainment+Paradise+Jaipur"
+  },
+  // ... Haldi, Sangeet, Wedding
+];
+```
+
+### src/data/posts.ts
+
+```ts
+export const posts = [
+  { type: "image", src: "https://your-image-link.jpg", caption: "Haldi prep begins!" },
+  { type: "video", src: "https://your-video-link.mp4", caption: "Sangeet rehearsal" },
+];
+```
+
+---
+
+## Outstanding Items
+
+- [ ] Groom's mother's name — placeholder `[Groom's mother's name]` needs to be confirmed and filled in `src/pages/index.astro` (Hero section)
+- [ ] Haldi Carnival — time not confirmed, update `events.ts` once known
+- [ ] Sangeet — time not confirmed, update `events.ts` once known
+- [ ] Couple photo for Hero backdrop — upload to `public/images/`
+- [ ] Lottie JSON files — source or export floral/diya/mandala animations to `public/lottie/`
+- [ ] Confirm RSVP WhatsApp number `919116736541` or replace in `RSVP.tsx`
+
+---
+
+## How to Run Locally
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+---
+
+## Deployment (Vercel — recommended)
+
+1. Push project to a GitHub repo
+2. Go to vercel.com → New Project → Import the repo
+3. Vercel auto-detects Astro — no config needed
+4. Every push to `main` triggers a new deploy automatically
+5. Add a custom domain (e.g. `ektawedsajay.com`) in Vercel project settings
+
+---
+
+## Notes
+
+- All interactive sections (Countdown, RSVP, Updates) are Astro islands — only they ship JS to the browser
+- Rest of the site is pure HTML — extremely fast first load
+- Fully responsive — mobile-first Tailwind layout
+- Respects `prefers-reduced-motion` — GSAP animations are skipped if user has this enabled
+- No backend or database — static site, zero running costs

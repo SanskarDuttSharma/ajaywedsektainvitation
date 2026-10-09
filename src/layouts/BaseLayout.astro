@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+interface Props { title?: string }
+const { title = 'Ekta & Ajay — Wedding Invitation' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content="You are cordially invited to the wedding of Ekta Dutt & Ajay Sherawat — 20 November 2026, Ajmer." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Snap-section entrance fade on each page arrival
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.classList.remove('snap-active');
+            void (target as HTMLElement).offsetWidth; // force reflow to re-trigger animation
+            target.classList.add('snap-active');
+          }
+        });
+      }, { threshold: 0.4 });
+
+      document.querySelectorAll('main > section, main > div, main > astro-island, body > footer')
+        .forEach(el => io.observe(el));
+    </script>
+  </body>
+</html>

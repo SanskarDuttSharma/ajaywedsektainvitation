@@ -1,0 +1,99 @@
+---
+---
+
+<audio id="wedding-audio" src="/audio/weddingsong.mp3" loop preload="auto"></audio>
+
+<!-- Floating music toggle button -->
+<button
+  id="music-toggle"
+  aria-label="Pause music"
+  title="Pause music"
+  style="
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(201,168,76,0.45);
+    background: rgba(253,246,236,0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    transition: background 0.2s, transform 0.15s;
+    padding: 0;
+  "
+>
+  <!-- Pause icon (two bars) -->
+  <svg id="icon-pause" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="2" width="4" height="12" rx="1.5" fill="rgba(201,168,76,0.9)"/>
+    <rect x="9" y="2" width="4" height="12" rx="1.5" fill="rgba(201,168,76,0.9)"/>
+  </svg>
+  <!-- Play icon (triangle) -->
+  <svg id="icon-play" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <path d="M4 2.5L13 8L4 13.5V2.5Z" fill="rgba(201,168,76,0.9)"/>
+  </svg>
+</button>
+
+<style>
+  #music-toggle:hover {
+    background: rgba(253,246,236,0.6) !important;
+    transform: scale(1.08);
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const audio  = document.getElementById('wedding-audio') as HTMLAudioElement | null;
+  const btn    = document.getElementById('music-toggle') as HTMLButtonElement | null;
+  const iPause = document.getElementById('icon-pause') as SVGElement | null;
+  const iPlay  = document.getElementById('icon-play')  as SVGElement | null;
+
+  function setIcon(playing: boolean) {
+    if (!iPause || !iPlay) return;
+    iPause.style.display = playing ? 'block' : 'none';
+    iPlay.style.display  = playing ? 'none'  : 'block';
+    if (btn) btn.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
+  }
+
+  if (audio && btn) {
+    document.addEventListener('curtainClicked', () => {
+      btn.style.display = 'flex';
+      audio.volume = 0;
+      audio.play().then(() => {
+        gsap.to(audio, { volume: 0.55, duration: 2, ease: 'power2.out' });
+        setIcon(true);
+      }).catch(() => {
+        audio.volume = 0.55;
+        setIcon(false);
+      });
+    });
+
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        setIcon(true);
+      } else {
+        audio.pause();
+        setIcon(false);
+      }
+    });
+
+    // Pause when tab is hidden, resume when visible again (only if was playing)
+    let wasPlayingBeforeHide = false;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        wasPlayingBeforeHide = !audio.paused;
+        if (wasPlayingBeforeHide) { audio.pause(); setIcon(false); }
+      } else {
+        if (wasPlayingBeforeHide) { audio.play(); setIcon(true); }
+      }
+    });
+  }
+</script>

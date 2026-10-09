@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CurtainIntro from '../components/CurtainIntro.astro';
+import MusicPlayer from '../components/MusicPlayer.astro';
+import Navbar from '../components/Navbar.astro';
+import CoupleLogo from '../components/CoupleLogo.astro';
+import Hero from '../components/Hero.astro';
+import InvitationMessage from '../components/InvitationMessage.astro';
+import Countdown from '../components/Countdown';
+import InvitationCard from '../components/InvitationCard.astro';
+import EventPage from '../components/EventPage';
+import PhotoCollage from '../components/PhotoCollage';
+import Footer from '../components/Footer.astro';
+import { events } from '../data/events';
+---
+
+<BaseLayout>
+  <CurtainIntro />
+  <MusicPlayer />
+  <Navbar />
+  <main>
+    <CoupleLogo />
+    <Hero />
+    <InvitationMessage />
+    <Countdown client:only="react" />
+    <InvitationCard />
+    {events.map((ev, i) => (
+      <EventPage client:load event={ev} index={i} total={events.length} />
+    ))}
+    <PhotoCollage client:only="react" />
+  </main>
+  <Footer />
+</BaseLayout>
