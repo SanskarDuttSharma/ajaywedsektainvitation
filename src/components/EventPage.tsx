@@ -12,7 +12,7 @@ const BOTTOM_IMGS = [
   '/images/MahendiBottomImage.png',        // 2 Mahendi
   '/images/SangeetBottomImage.png',        // 3 Sangeet
   '/images/WeddingBottom.png',             // 4 The Wedding
-  '', // 5 Reception — background handled separately
+  '/images/FinalImages/NewReceptionBackgroundBottom.PNG', // 5 Reception
 ];
 
 // ── Haldi Carnival ─────────────────────────────────────────────────────────────
@@ -169,7 +169,7 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
     : i === 2 ? 'clamp(6rem, 20vw, 14rem)' // Mahendi — MahendiTop center arch
     : i === 3 ? 'clamp(5rem, 14vw, 11rem)'  // SangeetTopLeft corner
     : i === 4 ? 'clamp(5rem, 14vw, 11rem)' // WeddingTopRightLeft corners
-    : i === 5 ? 'clamp(5rem, 14vw, 11rem)' // Reception top image
+    : i === 5 ? 'clamp(6rem, 18vw, 13rem)' // Reception top image
     : 'clamp(3rem, 7vw, 6rem)';
 
   // Shared animation style helper
@@ -283,18 +283,18 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
         />
       )}
 
-      {/* Reception (5): full-page background */}
+      {/* Reception (5): top image */}
       {i === 5 && (
         <img
-          src="/images/FinalImages/Newreceptionbackground.PNG"
+          src="/images/FinalImages/NewReceptionBackgroundTop.PNG"
           alt="" aria-hidden="true"
           style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%',
-            objectFit: 'cover', objectPosition: 'center',
-            pointerEvents: 'none', zIndex: 1,
+            position: 'absolute', top: 0, left: 0,
+            width: '100%', height: 'auto',
+            pointerEvents: 'none', zIndex: 1, mixBlendMode: 'multiply',
             opacity: imgVisible ? 1 : 0,
-            transition: 'opacity 0.9s ease 0.05s',
+            transform: imgVisible ? 'translateY(0)' : 'translateY(-20px)',
+            transition: 'opacity 0.9s ease 0.05s, transform 0.9s ease 0.05s',
           }}
         />
       )}

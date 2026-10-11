@@ -3,24 +3,15 @@
 
 <footer class="footer-section">
 
-  <!-- Wave top -->
-  <svg class="wave-divider" viewBox="0 0 480 24" preserveAspectRatio="none">
-    <path d="M0,12 C80,2 120,22 200,12 S320,2 400,12 S450,22 480,12"
-          stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
-  </svg>
-
-  <!-- Thank you note from family -->
-  <p class="font-body footer-thankyou-note">
-    With hearts full of gratitude, the Sharma family<br/>
-    is waiting for you to be part of<br/>
-    our celebration.
-  </p>
-
-  <!-- Thin gold rule -->
-  <div class="footer-rule"></div>
+  <!-- Gold ornamental divider -->
+  <div class="ornament-divider">
+    <div class="ornament-line"></div>
+    <span class="ornament-diamond">❖</span>
+    <div class="ornament-line"></div>
+  </div>
 
   <!-- Closing message -->
-  <p class="font-script footer-closing">We can't wait to celebrate with you!</p>
+  <p class="font-script footer-closing">We can't wait to<br/>celebrate with you!</p>
 
   <!-- Couple names -->
   <p class="font-script footer-names">Ekta &amp; Ajay</p>
@@ -32,105 +23,114 @@
     <div class="heart-line"></div>
   </div>
 
-  <!-- Wave bottom -->
-  <svg class="wave-divider" viewBox="0 0 480 24" preserveAspectRatio="none">
-    <path d="M0,12 C80,2 120,22 200,12 S320,2 400,12 S450,22 480,12"
-          stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
-  </svg>
-
-  <!-- Sub-footer -->
-  <div class="sub-footer">
-    <p class="font-script sub-names">Thank you !</p>
-    <p class="font-heading sub-meta">
-      20 November 2026 &bull; #EktaAndAjayBecomeEkay &bull;
-    </p>
+  <!-- Special invite credit -->
+  <div class="special-invite">
+    <p class="font-body invite-label">Special invite from</p>
+    <p class="font-heading invite-name">Sanskar Dutt Sharma</p>
   </div>
+
+  <!-- Gold ornamental divider -->
+  <div class="ornament-divider">
+    <div class="ornament-line"></div>
+    <span class="ornament-diamond">❖</span>
+    <div class="ornament-line"></div>
+  </div>
+
+  <!-- Thank you -->
+  <p class="font-script footer-thankyou">Thank you!</p>
+
+  <!-- Hashtag -->
+  <p class="font-heading footer-meta">
+    20 November 2026 &bull; #EktaAndAjayBecomeEkay
+  </p>
 
 </footer>
 
 <style>
   .footer-section {
-    background: var(--color-deep);
-    padding: clamp(3rem,8vw,5rem) 1.5rem clamp(1.5rem,4vw,3rem);
+    background: var(--color-ivory);
+    padding: 0 1.5rem clamp(2rem,5vw,3.5rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: clamp(1rem,3vw,1.75rem);
-    border-top: 1px solid rgba(201,168,76,0.12);
+    gap: clamp(0.9rem,2.5vw,1.5rem);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    scroll-snap-align: start;
   }
 
-  .footer-thankyou-label {
-    font-size: clamp(9px, 2vw, 11px);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    opacity: 0.6;
-    text-align: center;
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: min(200px, 55vw);
   }
-
-  .footer-thankyou-note {
-    font-size: clamp(13px, 3vw, 15px);
-    color: rgba(253,246,236,0.55);
-    text-align: center;
-    line-height: 1.9;
-    max-width: 480px;
-    font-style: italic;
-  }
-
-  .footer-rule {
-    width: clamp(80px, 22vw, 150px);
+  .ornament-line {
+    flex: 1;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent);
+  }
+  .ornament-diamond {
+    color: var(--color-gold);
+    font-size: 0.65rem;
+    opacity: 0.8;
   }
 
   .footer-closing {
-    font-size: clamp(2.2rem,8vw,3.8rem);
+    font-size: clamp(2rem,7.5vw,3.4rem);
     color: var(--color-gold);
+    line-height: 1.15;
     text-align: center;
-    line-height: 1.2;
   }
 
   .footer-names {
-    font-size: clamp(2.5rem,9vw,4.5rem);
-    color: var(--color-ivory);
-    text-align: center;
+    font-size: clamp(2.4rem,9vw,4.2rem);
+    color: var(--color-deep);
+    margin: 0;
+    line-height: 1.1;
   }
 
   .heart-row {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    width: 100%;
-    max-width: 220px;
+    width: min(220px, 60vw);
   }
-  .heart-line { flex: 1; height: 1px; background: rgba(201,168,76,0.3); }
-  .heart-icon { color: var(--color-gold); font-size: 0.85rem; opacity: 0.7; }
+  .heart-line { flex: 1; height: 1px; background: rgba(201,168,76,0.35); }
+  .heart-icon { color: var(--color-gold); font-size: 0.8rem; }
 
-  .sub-footer {
+  .special-invite {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
-    margin-top: 0.5rem;
+    gap: 0.2rem;
+  }
+  .invite-label {
+    font-size: clamp(12px,2.8vw,14px);
+    color: var(--color-deep);
+    opacity: 0.6;
+    font-style: italic;
+    margin: 0;
+  }
+  .invite-name {
+    font-size: clamp(1rem,4vw,1.4rem);
+    color: var(--color-gold);
+    letter-spacing: 0.06em;
+    margin: 0;
   }
 
-  .sub-names {
-    font-size: clamp(1.8rem,6vw,2.5rem);
-    color: rgba(253,246,236,0.45);
+  .footer-thankyou {
+    font-size: clamp(2rem,7vw,3rem);
+    color: var(--color-gold);
+    line-height: 1.1;
   }
 
-  .sub-meta {
+  .footer-meta {
     font-size: 9px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(253,246,236,0.28);
+    color: var(--color-deep);
+    opacity: 0.3;
     text-align: center;
   }
-
-  .wa-link {
-    color: rgba(201,168,76,0.5);
-    text-decoration: underline;
-  }
-  .wa-link:hover { color: var(--color-gold); }
 </style>
