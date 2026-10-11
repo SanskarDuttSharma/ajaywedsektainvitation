@@ -383,7 +383,7 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
             <div style={{ flexShrink: 0, width: '52px', display: 'flex', justifyContent: 'center', paddingTop: '2px' }}>
               <a href={ev.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', width: '38px', height: '38px', flexShrink: 0 }}>
-                <img src="/images/GoogleMapGOTO.png" alt="Directions" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <img src="/images/GoogleMapGOTO.png" alt="Directions" style={{ width: '52px', height: '52px', objectFit: 'contain', display: 'block' }} />
               </a>
             </div>
             <div>
