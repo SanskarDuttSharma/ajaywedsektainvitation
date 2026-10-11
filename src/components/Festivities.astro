@@ -19,6 +19,17 @@ import { events } from '../data/events';
           class="event-card reveal rounded-2xl overflow-hidden shadow-md flex flex-col"
           style={`background: var(--color-ivory); border-top: 4px solid ${event.color};`}
         >
+          <!-- Optional top image -->
+          {event.topImage && (
+            <img
+              src={event.topImage}
+              alt=""
+              aria-hidden="true"
+              class="w-full object-cover pointer-events-none"
+              style="height: clamp(80px, 14vw, 120px); object-position: center top;"
+            />
+          )}
+
           <!-- Card header -->
           <div class="px-7 pt-7 pb-4">
             <div class="flex items-center gap-3 mb-3">
@@ -55,7 +66,7 @@ import { events } from '../data/events';
           </div>
 
           <!-- Actions -->
-          <div class="px-7 pb-7 pt-2 flex gap-3 flex-wrap">
+          <div class="px-7 pt-2 flex gap-3 flex-wrap" style={event.bottomImage ? 'padding-bottom: 0.75rem;' : 'padding-bottom: 1.75rem;'}>
             <a
               href={event.mapsUrl}
               target="_blank"
@@ -75,6 +86,16 @@ import { events } from '../data/events';
               📅 Add to Calendar
             </a>
           </div>
+          <!-- Optional bottom image -->
+          {event.bottomImage && (
+            <img
+              src={event.bottomImage}
+              alt=""
+              aria-hidden="true"
+              class="w-full object-cover pointer-events-none mt-2"
+              style="height: clamp(80px, 14vw, 120px); object-position: center bottom;"
+            />
+          )}
         </div>
       ))}
     </div>

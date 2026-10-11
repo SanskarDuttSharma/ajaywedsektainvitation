@@ -1,17 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
 import type { Event } from '../data/events';
 
-const NUMS    = ['01', '02', '03', '04', '05'];
-const ACCENTS = ['#C9A84C', '#D4A017', '#C4795A', '#D4748C', '#8A5C6E'];
-const BG      = ['#FDF6EC', '#FAF3E8', '#FFF5EE', '#FFF9F0', '#F5EEE8'];
+const NUMS    = ['01', '02', '03', '04', '05', '06'];
+const ACCENTS = ['#C9A84C', '#D4A017', '#C4795A', '#D4748C', '#8A5C6E', '#7B6FA0'];
+const BG      = ['#FDF6EC', '#FAF3E8', '#FFF5EE', '#FFF9F0', '#F5EEE8', '#F3F0F8'];
 
 // Bottom decorative images per event index ('' = no bottom image)
 const BOTTOM_IMGS = [
   '/images/RingCeremonyBottom.png',        // 0 Ring Ceremony
   '/images/HaldiCarnivalBottom.png',       // 1 Haldi Carnival
-  '/images/MahendiBottomImage.png',       // 2 Mahendi
-  '/images/SangeetBottomImage.png',       // 3 Sangeet
-  '/images/WeddingBottom.png',            // 4 The Wedding
+  '/images/MahendiBottomImage.png',        // 2 Mahendi
+  '/images/SangeetBottomImage.png',        // 3 Sangeet
+  '/images/WeddingBottom.png',             // 4 The Wedding
+  '/images/ReceptionBottombackground.png', // 5 Reception
 ];
 
 // ── Haldi Carnival ─────────────────────────────────────────────────────────────
@@ -168,6 +169,7 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
     : i === 2 ? 'clamp(6rem, 20vw, 14rem)' // Mahendi — MahendiTop center arch
     : i === 3 ? 'clamp(5rem, 14vw, 11rem)'  // SangeetTopLeft corner
     : i === 4 ? 'clamp(5rem, 14vw, 11rem)' // WeddingTopRightLeft corners
+    : i === 5 ? 'clamp(5rem, 14vw, 11rem)' // Reception top image
     : 'clamp(3rem, 7vw, 6rem)';
 
   // Shared animation style helper
@@ -269,6 +271,22 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
       {i === 4 && (
         <img
           src="/images/WeddingTop.png"
+          alt="" aria-hidden="true"
+          style={{
+            position: 'absolute', top: 0, left: 0,
+            width: '100%', height: 'auto',
+            pointerEvents: 'none', zIndex: 1, mixBlendMode: 'multiply',
+            opacity: imgVisible ? 1 : 0,
+            transform: imgVisible ? 'translateY(0)' : 'translateY(-20px)',
+            transition: 'opacity 0.9s ease 0.05s, transform 0.9s ease 0.05s',
+          }}
+        />
+      )}
+
+      {/* Reception (5): top image */}
+      {i === 5 && (
+        <img
+          src="/images/ReceptionTopBackground.png"
           alt="" aria-hidden="true"
           style={{
             position: 'absolute', top: 0, left: 0,

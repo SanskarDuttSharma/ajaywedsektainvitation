@@ -10,6 +10,8 @@ export interface Event {
   gcalEnd: string;
   mapsUrl: string;
   color: string;
+  topImage?: string;
+  bottomImage?: string;
 }
 
 export const events: Event[] = [
@@ -90,5 +92,7 @@ export const events: Event[] = [
     gcalEnd: "20261122T183000Z",
     mapsUrl: "https://maps.google.com/?q=Chandani+Garden+Sheopur+Road+Sector+6+Sanganer+Pratap+Nagar+Jaipur+Rajasthan",
     color: "#7B6FA0",
+    topImage: "/images/ReceptionTopBackground.png",
+    bottomImage: "/images/ReceptionBottombackground.png",
   },
 ];
