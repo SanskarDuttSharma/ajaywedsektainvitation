@@ -290,7 +290,8 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
           alt="" aria-hidden="true"
           style={{
             position: 'absolute', top: 0, left: 0,
-            width: '100%', height: 'auto',
+            width: '100%', height: 'clamp(5rem, 14vw, 11rem)',
+            objectFit: 'cover', objectPosition: 'top center',
             pointerEvents: 'none', zIndex: 1, mixBlendMode: 'multiply',
             opacity: imgVisible ? 1 : 0,
             transform: imgVisible ? 'translateY(0)' : 'translateY(-20px)',
@@ -412,6 +413,9 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
             display: 'block',
             width: '100%',
             height: 'auto',
+            maxHeight: i === 5 ? 'clamp(6rem, 18vw, 12rem)' : undefined,
+            objectFit: i === 5 ? 'cover' : undefined,
+            objectPosition: i === 5 ? 'bottom center' : undefined,
             flexShrink: 0,
             pointerEvents: 'none',
             mixBlendMode: 'multiply',
