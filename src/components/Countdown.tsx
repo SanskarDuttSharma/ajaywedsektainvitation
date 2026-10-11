@@ -6,6 +6,9 @@ const GALLERY = [
   '/images/1.jpg',
   '/images/3.jpg',
   '/images/4.jpg',
+  '/images/5.jpg',
+  '/images/6.jpg',
+  '/images/7.jpg',
 ];
 
 const WEDDING = new Date('2026-11-20T14:30:00Z');
