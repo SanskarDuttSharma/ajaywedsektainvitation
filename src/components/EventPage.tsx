@@ -371,14 +371,18 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
             <div>
               <p className="font-heading" style={{ fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: accent, marginBottom: '4px' }}>Date & Time</p>
               <p className="font-body" style={{ fontSize: 'clamp(14px,3.1vw,17px)', color: 'var(--color-deep)', fontWeight: 500, margin: 0 }}>{ev.dateLabel}</p>
-              <p className="font-body" style={{ fontSize: 'clamp(12px,2.6vw,15px)', color: 'var(--color-deep)', opacity: 0.6, margin: 0 }}>{ev.timeLabel}</p>
+              {![1, 2, 3].includes(i) && (
+                <p className="font-body" style={{ fontSize: 'clamp(12px,2.6vw,15px)', color: 'var(--color-deep)', opacity: 0.6, margin: 0 }}>{ev.timeLabel}</p>
+              )}
             </div>
           </div>
 
           {/* Venue */}
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
             <div style={{ flexShrink: 0, width: '52px', display: 'flex', justifyContent: 'center', paddingTop: '2px' }}>
-              <a href={ev.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '26px', lineHeight: 1, textDecoration: 'none' }}>📍</a>
+              <a href={ev.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', width: '38px', height: '38px', flexShrink: 0 }}>
+                <img src="/images/GoogleMapGOTO.png" alt="Directions" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              </a>
             </div>
             <div>
               <p className="font-heading" style={{ fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: accent, marginBottom: '4px' }}>Venue</p>
