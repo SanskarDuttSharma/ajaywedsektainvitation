@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 
 const GALLERY = [
 
-  '/images/2.jpg',
-  '/images/1.jpg',
-  '/images/3.jpg',
-  '/images/4.jpg',
-  '/images/5.jpg',
-  '/images/6.jpg',
-  '/images/7.jpg',
+  '/images/FinalImages/1.JPG',
+  '/images/FinalImages/2.JPG',
+  '/images/FinalImages/3.JPG',
+  '/images/FinalImages/4.JPG',
+  '/images/FinalImages/5.JPG',
+  '/images/FinalImages/6.JPG',
+  '/images/FinalImages/7.JPG',
 ];
 
 const WEDDING = new Date('2026-11-20T14:30:00Z');
