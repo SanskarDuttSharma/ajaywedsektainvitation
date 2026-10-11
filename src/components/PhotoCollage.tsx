@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 export default function PhotoCollage() {
   const [photos, setPhotos] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [lightbox, setLightbox] = useState<string | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -141,14 +140,12 @@ export default function PhotoCollage() {
                 key={i}
                 src={url}
                 alt={`Memory ${i + 1}`}
-                onClick={() => setLightbox(url)}
                 className="collage-photo"
                 style={{
                   width: '100%',
                   display: 'block',
                   borderRadius: '12px',
                   marginBottom: '10px',
-                  cursor: 'pointer',
                   objectFit: 'cover',
                   opacity: 0,
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -159,56 +156,6 @@ export default function PhotoCollage() {
         )}
       </div>
 
-      {/* Lightbox */}
-      {lightbox && (
-        <div
-          onClick={() => setLightbox(null)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(44,26,14,0.88)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            cursor: 'zoom-out',
-          }}
-        >
-          <img
-            src={lightbox}
-            alt="Full view"
-            onClick={e => e.stopPropagation()}
-            style={{
-              maxWidth: '90vw',
-              maxHeight: '90vh',
-              borderRadius: '16px',
-              objectFit: 'contain',
-              boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
-            }}
-          />
-          <button
-            onClick={() => setLightbox(null)}
-            style={{
-              position: 'absolute',
-              top: '1.5rem',
-              right: '1.5rem',
-              background: 'rgba(255,255,255,0.15)',
-              border: 'none',
-              color: '#fff',
-              borderRadius: '50%',
-              width: '40px',
-              height: '40px',
-              fontSize: '1.2rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            ✕
-          </button>
-        </div>
-      )}
 
       <style>{`
         @keyframes pulse {
