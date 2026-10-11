@@ -12,7 +12,7 @@ const BOTTOM_IMGS = [
   '/images/MahendiBottomImage.png',        // 2 Mahendi
   '/images/SangeetBottomImage.png',        // 3 Sangeet
   '/images/WeddingBottom.png',             // 4 The Wedding
-  '/images/ReceptionBottombackground.png', // 5 Reception
+  '', // 5 Reception — background handled separately
 ];
 
 // ── Haldi Carnival ─────────────────────────────────────────────────────────────
@@ -283,19 +283,18 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
         />
       )}
 
-      {/* Reception (5): top image */}
+      {/* Reception (5): full-page background */}
       {i === 5 && (
         <img
-          src="/images/ReceptionTopBackground.png"
+          src="/images/FinalImages/Newreceptionbackground.PNG"
           alt="" aria-hidden="true"
           style={{
-            position: 'absolute', top: 0, left: 0,
-            width: '100%', height: 'clamp(5rem, 14vw, 11rem)',
-            objectFit: 'cover', objectPosition: 'top center',
-            pointerEvents: 'none', zIndex: 1, mixBlendMode: 'multiply',
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover', objectPosition: 'center',
+            pointerEvents: 'none', zIndex: 1,
             opacity: imgVisible ? 1 : 0,
-            transform: imgVisible ? 'translateY(0)' : 'translateY(-20px)',
-            transition: 'opacity 0.9s ease 0.05s, transform 0.9s ease 0.05s',
+            transition: 'opacity 0.9s ease 0.05s',
           }}
         />
       )}
@@ -330,7 +329,7 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
         {/* Event name */}
         <h2 style={{
           fontFamily: '"Great Vibes", cursive',
-          fontSize: i === 5 ? 'clamp(2rem,7vw,3.5rem)' : 'clamp(2.5rem,8.5vw,4.5rem)',
+          fontSize: 'clamp(2.5rem,8.5vw,4.5rem)',
           color: 'var(--color-deep)', lineHeight: 1.05,
           textAlign: 'center', padding: '0 0.5em', marginBottom: '0.25rem',
         }}>
