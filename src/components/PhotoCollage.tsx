@@ -68,7 +68,7 @@ export default function PhotoCollage() {
             lineHeight: 1.2,
           }}
         >
-          our little album
+          Our Little Album
         </h2>
         <div
           style={{
