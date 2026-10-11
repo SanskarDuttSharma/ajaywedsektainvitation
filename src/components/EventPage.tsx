@@ -330,19 +330,19 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
         {/* Event name */}
         <h2 style={{
           fontFamily: '"Great Vibes", cursive',
-          fontSize: 'clamp(2.5rem,8.5vw,4.5rem)',
+          fontSize: i === 5 ? 'clamp(2rem,7vw,3.5rem)' : 'clamp(2.5rem,8.5vw,4.5rem)',
           color: 'var(--color-deep)', lineHeight: 1.05,
-          textAlign: 'center', padding: '0 0.5em', marginBottom: '0.4rem',
+          textAlign: 'center', padding: '0 0.5em', marginBottom: '0.25rem',
         }}>
           {ev.name}
         </h2>
 
         {/* Quote */}
         <p className="font-body" style={{
-          fontStyle: 'italic', fontSize: 'clamp(12px,2.7vw,15px)',
+          fontStyle: 'italic', fontSize: 'clamp(11px,2.4vw,13px)',
           color: 'var(--color-deep)', opacity: 0.55,
           textAlign: 'center', maxWidth: '260px',
-          marginBottom: 'clamp(1rem,3vw,1.5rem)',
+          marginBottom: i === 5 ? '0.6rem' : 'clamp(1rem,3vw,1.5rem)',
         }}>
           "{ev.quote}"
         </p>
@@ -350,7 +350,7 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
         {/* Gold divider */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.6rem',
-          width: '100%', maxWidth: '260px', marginBottom: 'clamp(1rem,2.5vw,1.75rem)',
+          width: '100%', maxWidth: '260px', marginBottom: i === 5 ? '0.6rem' : 'clamp(1rem,2.5vw,1.75rem)',
         }}>
           <div style={{ flex: 1, height: '1px', background: `linear-gradient(to right, transparent, ${accent}60)` }} />
           <span style={{ color: accent, fontSize: '0.65rem', opacity: 0.7 }}>✦</span>
@@ -359,8 +359,8 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
 
         {/* Detail rows */}
         <div style={{
-          display: 'flex', flexDirection: 'column', gap: '0.75rem',
-          width: '100%', maxWidth: '260px', marginBottom: 'clamp(1rem,3vw,1.5rem)',
+          display: 'flex', flexDirection: 'column', gap: i === 5 ? '0.5rem' : '0.75rem',
+          width: '100%', maxWidth: '260px', marginBottom: i === 5 ? '0.5rem' : 'clamp(1rem,3vw,1.5rem)',
         }}>
           {/* Date & Time */}
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
@@ -413,9 +413,6 @@ export default function EventPage({ event: ev, index: i, total }: Props) {
             display: 'block',
             width: '100%',
             height: 'auto',
-            maxHeight: i === 5 ? 'clamp(10rem, 28vw, 18rem)' : undefined,
-            objectFit: i === 5 ? 'cover' : undefined,
-            objectPosition: i === 5 ? 'top center' : undefined,
             flexShrink: 0,
             pointerEvents: 'none',
             mixBlendMode: 'multiply',
