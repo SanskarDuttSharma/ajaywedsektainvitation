@@ -38,7 +38,7 @@ export const events: Event[] = [
     quote: "Bathed in golden blessings, the journey begins.",
     gcalStart: "20261119T043000Z",
     gcalEnd: "20261119T073000Z",
-    mapsUrl: "https://maps.google.com/?q=62/72+RHB+Pratap+Nagar+Sanganer+Jaipur+Rajasthan+302033",
+    mapsUrl: "https://maps.app.goo.gl/KhH5S48Tvnbi7Zzg9",
     color: "#F5C842",
   },
   {
@@ -51,7 +51,7 @@ export const events: Event[] = [
     quote: "Adorned in henna, hearts painted with love.",
     gcalStart: "20261119T083000Z",
     gcalEnd: "20261119T123000Z",
-    mapsUrl: "https://maps.google.com/?q=62/72+RHB+Pratap+Nagar+Sanganer+Jaipur+Rajasthan+302033",
+    mapsUrl: "https://maps.app.goo.gl/KhH5S48Tvnbi7Zzg9",
     color: "#C4795A",
   },
   {
@@ -64,7 +64,7 @@ export const events: Event[] = [
     quote: "Dance, sing, celebrate — love is in the air.",
     gcalStart: "20261119T123000Z",
     gcalEnd: "20261119T173000Z",
-    mapsUrl: "https://maps.google.com/?q=62/72+RHB+Pratap+Nagar+Sanganer+Jaipur+Rajasthan+302033",
+    mapsUrl: "https://maps.app.goo.gl/KhH5S48Tvnbi7Zzg9",
     color: "#D4748C",
   },
   {
